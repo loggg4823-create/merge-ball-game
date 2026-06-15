@@ -361,13 +361,13 @@ function restart() {
 }
 
 // ===== INPUT =====
-canvas.addEventListener('click', (e) => {
+function handleTap(clientX, clientY) {
     if (gameOver) { restart(); return; }
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-    const mx = (e.clientX - rect.left) * scaleX;
-    const my = (e.clientY - rect.top) * scaleY;
+    const mx = (clientX - rect.left) * scaleX;
+    const my = (clientY - rect.top) * scaleY;
 
     if (my < DEADLINE_Y) {
         const rnd = Math.random();
@@ -377,9 +377,20 @@ canvas.addEventListener('click', (e) => {
         balls.push(new Ball(mx, my, r, 0, 0));
         ripples.push(new Ripple(mx, my));
     }
-});
+}
+
+canvas.addEventListener('click', (e) => handleTap(e.clientX, e.clientY));
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    const t = e.touches[0];
+    handleTap(t.clientX, t.clientY);
+}, { passive: false });
 
 document.getElementById('restart-btn').addEventListener('click', restart);
+document.getElementById('restart-btn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    restart();
+});
 
 // ===== MAIN LOOP =====
 function gameLoop(timestamp) {
