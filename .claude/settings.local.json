@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/log/Documents/**)",
+      "Bash(cp -r todo-temp/* todo-temp/.* \"工程/第一个nextjs/\")",
+      "Bash(rm -rf todo-temp)",
+      "Bash(npx tsc *)"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Pygame Live Preview",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/pygame_preview.py",
+      "console": "externalTerminal",
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  ]
+}

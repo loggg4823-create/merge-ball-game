@@ -1,0 +1,7 @@
+[project]
+name = "synthesis-ball"
+version = "1.0.0"
+description = "合成大球 - A pygame merge ball game"
+
+[tool.pygbag]
+build = "web_game"
